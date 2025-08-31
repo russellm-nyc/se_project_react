@@ -1,0 +1,70 @@
+.header {
+  max-width: 1440px;
+  margin: 0px auto 28px;
+  padding: 0 40px;
+  display: flex;
+}
+.header__add-clothes-btn {
+  font-size: 20px;
+  font-weight: 700;
+  background-color: transparent;
+  border: 0;
+  margin-left: auto;
+  margin-right: 20px;
+}
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  align-items: flex-end;
+}
+.header__datetime {
+  font-size: 20px;
+  font-weight: 700;
+  align-items: flex-end;
+}
+.header__logo {
+  width: 89px;
+  height: 40px;
+  padding-right: 24px;
+}
+.header__place {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 11px 0 5px;
+}
+.header__username {
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: auto;
+  padding: 8px 12px 7px 0;
+}
+@media screen and (max-width: 800px) and (min-width: 600px) {
+  .header {
+    max-width: 800px;
+  }
+  .header__logo {
+    padding-bottom: 34px;
+  }
+  .header__place {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 599px) and (min-width: 280px) {
+  .header {
+    max-width: 375px;
+    flex-direction: column;
+    padding: 0 16px;
+  }
+  .header__avatar {
+    display: none;
+  }
+  .header__logo {
+    padding-bottom: 34px;
+  }
+  .header__place {
+    padding: 0;
+  }
+  .header__username {
+    display: none;
+  }
+}
