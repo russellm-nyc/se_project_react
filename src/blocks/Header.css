@@ -54,6 +54,7 @@
     max-width: 375px;
     flex-direction: column;
     padding: 0 16px;
+    margin-bottom: 16px;
   }
   .header__avatar {
     display: none;

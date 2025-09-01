@@ -1,0 +1,31 @@
+.item-card {
+  max-width: 323px;
+  position: relative;
+}
+
+.item-card__img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 19px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.item-card__title {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 12px;
+  background-color: rgba(255, 255, 255, 1);
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  border: none;
+}
+
+@media screen and (max-width: 599px) and (min-width: 280px) {
+  .item-card {
+    max-width: 162px;
+  }
+}

@@ -1,0 +1,19 @@
+.footer {
+  max-width: 1440px;
+  margin: 171px auto;
+  padding: 0 40px 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.footer__text {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 599px) and (min-width: 280px) {
+  .footer {
+    max-width: 375px;
+    padding: 0 16px 24px;
+    margin: 147px auto;
+  }
+}
