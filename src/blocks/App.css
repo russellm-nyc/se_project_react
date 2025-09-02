@@ -3,13 +3,15 @@ p {
   margin: 0;
 }
 .app {
+  min-width: 375px;
   margin: 0 auto;
   padding-top: 32px;
   background-color: rgba(243, 243, 243, 1);
   font-family: "Cabinet Grotesk", "Arial", sans-serif;
   font-size: 16px;
 }
-@media screen and (max-width: 375px) and (min-width: 280px) {
+
+@media screen and (max-width: 375px) and (min-width: 375px) {
   .app {
     padding-top: 18px;
   }
