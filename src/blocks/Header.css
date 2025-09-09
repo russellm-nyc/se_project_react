@@ -3,19 +3,19 @@
   margin: 0px auto 28px;
   padding: 0 40px;
   display: flex;
+  justify-content: space-between;
 }
 .header__add-clothes-btn {
   font-size: 20px;
   font-weight: 700;
   background-color: transparent;
   border: 0;
-  margin-left: auto;
-  margin-right: 20px;
+  margin: 0 20px;
+  padding: 0;
 }
 .header__avatar {
   width: 40px;
   height: 40px;
-  align-items: flex-end;
 }
 .header__datetime {
   font-size: 20px;
@@ -25,19 +25,22 @@
 .header__logo {
   width: 89px;
   height: 40px;
-  padding-right: 24px;
+  margin-right: 24px;
 }
 .header__place {
   font-size: 20px;
   font-weight: 700;
-  padding: 11px 0 5px;
+}
+.header__side {
+  display: flex;
+  align-items: center;
 }
 .header__username {
   font-size: 20px;
   font-weight: 700;
-  margin-left: auto;
-  padding: 8px 12px 7px 0;
+  margin-right: 12px;
 }
+
 @media screen and (max-width: 800px) and (min-width: 600px) {
   .header {
     max-width: 800px;
