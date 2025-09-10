@@ -7,12 +7,14 @@ import ModalWithForm from "../components/ModalWithForm";
 import { defaultClothingItems } from "../utils/defaultClothingItems";
 import "../blocks/App.css";
 import { getWeatherData } from "../utils/weatherApi";
+import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [weatherData, setWeatherData] = useState({ name: "", temp: "0" });
+  const [currentTempUnit, setCurrentTempUnit] = useState("F");
 
   function handleOpenItemModal(card) {
     setActiveModal("item-modal");
@@ -21,6 +23,10 @@ function App() {
 
   function handleOpenAddGarmentModal() {
     setActiveModal("add-garment-modal");
+  }
+
+  function handleTempUnitChange() {
+    setCurrentTempUnit(currentTempUnit === "F" ? "C" : "F");
   }
 
   function handleCloseModal() {
@@ -35,28 +41,36 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    setClothingItems(defaultClothingItems);
+  }, []);
+
   return (
-    <div className="app">
-      <Header
-        weatherData={weatherData}
-        handleOpenAddGarmentModal={handleOpenAddGarmentModal}
-      />
-      <Main
-        weatherData={weatherData}
-        clothingItems={clothingItems}
-        onCardClick={handleOpenItemModal}
-      />
-      <Footer />
-      <ItemModal
-        card={selectedCard}
-        isOpen={activeModal === "item-modal"}
-        onClose={handleCloseModal}
-      />
-      <ModalWithForm
-        isOpen={activeModal === "add-garment-modal"}
-        onClose={handleCloseModal}
-      />
-    </div>
+    <CurrentTemperatureUnitContext.Provider
+      value={{ currentTempUnit, handleTempUnitChange }}
+    >
+      <div className="app">
+        <Header
+          weatherData={weatherData}
+          handleOpenAddGarmentModal={handleOpenAddGarmentModal}
+        />
+        <Main
+          weatherData={weatherData}
+          clothingItems={clothingItems}
+          onCardClick={handleOpenItemModal}
+        />
+        <Footer />
+        <ItemModal
+          card={selectedCard}
+          isOpen={activeModal === "item-modal"}
+          onClose={handleCloseModal}
+        />
+        <ModalWithForm
+          isOpen={activeModal === "add-garment-modal"}
+          onClose={handleCloseModal}
+        />
+      </div>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 export default App;

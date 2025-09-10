@@ -14,10 +14,16 @@ export function getWeatherData() {
     });
 }
 function parseWeatherData(data) {
-  const parsedData = {};
+  const parsedData = { temp: {} };
   parsedData.city = data.name;
-  parsedData.temp = Math.round(data.main.temp);
+  parsedData.temp.F = Math.round(data.main.temp);
+  parsedData.temp.C = Math.round((data.main.temp - 32) * (5 / 9));
+  parsedData.weatherCondition = data.weather[0].main.toLowerCase();
+  parsedData.isDay = isDay(data.sys, data.dt);
   return parsedData;
+}
+function isDay({ sunrise, sunset }, timestamp) {
+  return sunrise < timestamp && timestamp < sunset;
 }
 
 function getWeatherCondition() {
