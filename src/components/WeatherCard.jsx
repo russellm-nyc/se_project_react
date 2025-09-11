@@ -5,7 +5,7 @@ import cloudy from "../assets/cloudy.svg";
 import "../blocks/WeatherCard.css";
 
 function WeatherCard({ weatherData }) {
-  const contextValue = useContext(CurrentTemperatureUnitContext);
+  const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
 
   return (
     <section className="weather-card">
@@ -19,8 +19,7 @@ function WeatherCard({ weatherData }) {
         className="weather-card__img"
       />
       <p className="weather-card__temp">
-        {weatherData.temp[contextValue.currentTempUnit]}&deg;{" "}
-        {contextValue.currentTempUnit}
+        {weatherData.temp[currentTempUnit]}&deg; {currentTempUnit}
       </p>
     </section>
   );

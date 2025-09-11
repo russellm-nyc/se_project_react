@@ -26,12 +26,14 @@ function isDay({ sunrise, sunset }, timestamp) {
   return sunrise < timestamp && timestamp < sunset;
 }
 
-function getWeatherCondition() {
-  if (temperature >= 86) {
+function getWeatherCondition(currentTemp) {
+  if (currentTemp >= 86) {
     return "hot";
-  } else if (temperature >= 66) {
+  } else if (currentTemp >= 66) {
     return "warm";
   } else {
     return "cold";
   }
 }
+
+export { getWeatherCondition };

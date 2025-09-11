@@ -3,19 +3,25 @@ import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitCon
 import WeatherCard from "./WeatherCard";
 import ItemCard from "./ItemCard";
 import "../blocks/Main.css";
+import { getWeatherCondition } from "../utils/weatherApi";
 
 function Main({ clothingItems, onCardClick, weatherData }) {
-  const contextValue = useContext(CurrentTemperatureUnitContext);
+  const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
+  const currentTemp = weatherData.temp?.[currentTempUnit];
+  const weatherCondition = getWeatherCondition(weatherData.temp.F);
+
+  const filteredItems = clothingItems.filter(
+    (item) => item.weather === weatherCondition
+  );
 
   return (
     <main className="main">
       <WeatherCard weatherData={weatherData} />
       <p className="main__text">
-        Today is {weatherData.temp[contextValue.currentTempUnit]}&deg;{" "}
-        {contextValue.currentTempUnit} / You may want to wear:
+        Today is {currentTemp}&deg; {currentTempUnit} / You may want to wear:
       </p>
       <ul className="main__list">
-        {clothingItems.map((item) => (
+        {filteredItems.map((item) => (
           <ItemCard key={item._id} data={item} onClick={onCardClick} />
         ))}
       </ul>

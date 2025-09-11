@@ -4,6 +4,7 @@ p {
 }
 .app {
   min-width: 375px;
+  min-height: 100vh;
   margin: 0 auto;
   padding-top: 32px;
   background-color: rgba(243, 243, 243, 1);
