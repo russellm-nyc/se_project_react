@@ -32,6 +32,10 @@ function App() {
     setCurrentTempUnit(currentTempUnit === "F" ? "C" : "F");
   }
 
+  function handleAddItemSubmit(inputValues) {
+    console.log(inputValues);
+  }
+
   function handleCloseModal() {
     setActiveModal("");
   }

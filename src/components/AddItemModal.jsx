@@ -1,6 +1,12 @@
 import ModalWithForm from "../components/ModalWithForm";
+import { useForm } from "../hooks/useForm";
 
 function AddItemModal({ activeModal, onClose }) {
+  const { values, handleChange } = useForm({
+    name: "",
+    weather: "hot",
+  });
+
   return (
     <ModalWithForm
       isOpen={activeModal === "add-garment-modal"}
@@ -17,7 +23,10 @@ function AddItemModal({ activeModal, onClose }) {
           id="garmet-name-input"
           type="text"
           className="modal__input"
+          name="name"
           placeholder="Name"
+          value={values.name}
+          onChange={handleChange}
           minLength="2"
           maxLength="40"
           required
@@ -29,7 +38,10 @@ function AddItemModal({ activeModal, onClose }) {
           id="garmet-image-input"
           type="url"
           className="modal__input"
+          name="image"
           placeholder="Image URL"
+          value={values.image || ""}
+          onChange={handleChange}
           required
         />
       </fieldset>
@@ -43,6 +55,8 @@ function AddItemModal({ activeModal, onClose }) {
             id="weather-hot"
             name="weather"
             value="hot"
+            onChange={handleChange}
+            checked={values.weather === "hot"}
           />
           <label htmlFor="weather-hot" className="modal__label">
             Hot
@@ -55,6 +69,8 @@ function AddItemModal({ activeModal, onClose }) {
             id="weather-warm"
             name="weather"
             value="warm"
+            onChange={handleChange}
+            checked={values.weather === "warm"}
           />
           <label htmlFor="weather-warm" className="modal__label">
             Warm
@@ -67,6 +83,8 @@ function AddItemModal({ activeModal, onClose }) {
             id="weather-cold"
             name="weather"
             value="cold"
+            onChange={handleChange}
+            checked={values.weather === "cold"}
           />
           <label htmlFor="weather-cold" className="modal__label">
             Cold
