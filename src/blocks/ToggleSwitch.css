@@ -24,6 +24,7 @@
   border-radius: 50%;
   background-color: #000;
   z-index: -1;
+  transition: left 0.3s linear;
 }
 .toggle-switch__checkbox:checked + .toggle-switch__circle {
   right: -2px;
@@ -42,7 +43,7 @@
 .toggle-switch__checkbox:not(:checked) ~ .toggle-switch__value_left {
   color: #fff;
 }
-.toggle-switch__value_left {
+/* .toggle-switch__value_left {
 }
 .toggle-switch__value_right {
-}
+} */

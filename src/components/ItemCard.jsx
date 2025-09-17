@@ -1,8 +1,8 @@
 import "../blocks/ItemCard.css";
 
-function ItemCard({ data, onClick }) {
+function ItemCard({ data, onCardClick }) {
   function handleOpenCard() {
-    onClick(data);
+    onCardClick(data);
   }
 
   return (

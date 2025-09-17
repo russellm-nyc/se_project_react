@@ -22,6 +22,12 @@
   font-weight: 700;
   align-items: flex-end;
 }
+.header__link {
+  display: flex;
+  text-decoration: none;
+  color: #000;
+}
+
 .header__logo {
   width: 89px;
   height: 40px;
@@ -35,10 +41,13 @@
   display: flex;
   align-items: center;
 }
+
 .header__username {
   font-size: 20px;
   font-weight: 700;
   margin-right: 12px;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 800px) and (min-width: 600px) {

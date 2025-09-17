@@ -1,0 +1,25 @@
+.sidebar {
+  display: flex;
+  flex-direction: column; /* stack sidebar sections vertically */
+  justify-content: flex-start; /* content starts from the top */
+  height: 100vh; /* make sidebar full height */
+  width: 325px;
+}
+
+.sidebar__row {
+  display: flex;
+  align-items: center; /* align avatar and text vertically */
+  gap: 16px;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+}
+
+.sidebar__username {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}

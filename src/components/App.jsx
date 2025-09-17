@@ -1,13 +1,16 @@
+import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+import "../blocks/App.css";
 import Header from "../components/Header";
 import Main from "../components/Main";
+import Profile from "../components/Profile";
 import Footer from "../components/Footer";
 import ItemModal from "../components/ItemModal";
-import ModalWithForm from "../components/ModalWithForm";
-import { defaultClothingItems } from "../utils/defaultClothingItems";
-import "../blocks/App.css";
-import { getWeatherData } from "../utils/weatherApi";
+import AddItemModal from "../components/AddItemModal";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
+import { defaultClothingItems } from "../utils/defaultClothingItems";
+import { getWeatherData } from "../utils/weatherApi";
 
 function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
@@ -54,89 +57,36 @@ function App() {
           weatherData={weatherData}
           handleOpenAddGarmentModal={handleOpenAddGarmentModal}
         />
-        <Main
-          weatherData={weatherData}
-          clothingItems={clothingItems}
-          onCardClick={handleOpenItemModal}
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                weatherData={weatherData}
+                clothingItems={clothingItems}
+                onCardClick={handleOpenItemModal}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                clothingItems={clothingItems}
+                onCardClick={handleOpenItemModal}
+                onAddItemClick={handleOpenAddGarmentModal}
+              />
+            }
+          />
+        </Routes>
+
         <Footer />
         <ItemModal
           card={selectedCard}
           isOpen={activeModal === "item-modal"}
           onClose={handleCloseModal}
         />
-        <ModalWithForm
-          isOpen={activeModal === "add-garment-modal"}
-          title={"New garment"}
-          buttonText={"Add garment"}
-          onClose={handleCloseModal}
-          name="add-garment-form"
-        >
-          <fieldset className="modal__fieldset">
-            <label htmlFor="garmet-name-input" className="modal__label">
-              Name
-            </label>
-            <input
-              id="garmet-name-input"
-              type="text"
-              className="modal__input"
-              placeholder="Name"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <label htmlFor="garmet-image-input" className="modal__label">
-              Image
-            </label>
-            <input
-              id="garmet-image-input"
-              type="url"
-              className="modal__input"
-              placeholder="Image URL"
-              required
-            />
-          </fieldset>
-
-          <fieldset className="modal__fieldset">
-            <legend className="modal__title">Select the weather type:</legend>
-            <div>
-              <input
-                className="modal__radio-btn"
-                type="radio"
-                id="weather-hot"
-                name="weather"
-                value="hot"
-              />
-              <label htmlFor="weather-hot" className="modal__label">
-                Hot
-              </label>
-            </div>
-            <div>
-              <input
-                className="modal__radio-btn"
-                type="radio"
-                id="weather-warm"
-                name="weather"
-                value="warm"
-              />
-              <label htmlFor="weather-warm" className="modal__label">
-                Warm
-              </label>
-            </div>
-            <div>
-              <input
-                className="modal__radio-btn"
-                type="radio"
-                id="weather-cold"
-                name="weather"
-                value="cold"
-              />
-              <label htmlFor="weather-cold" className="modal__label">
-                Cold
-              </label>
-            </div>
-          </fieldset>
-        </ModalWithForm>
+        <AddItemModal activeModal={activeModal} onClose={handleCloseModal} />
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );
