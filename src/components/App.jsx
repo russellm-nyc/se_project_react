@@ -16,7 +16,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [weatherData, setWeatherData] = useState({ name: "", temp: "0" });
+  const [weatherData, setWeatherData] = useState({ name: "", temp: 0 });
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
 
   function handleOpenItemModal(card) {
@@ -32,8 +32,14 @@ function App() {
     setCurrentTempUnit(currentTempUnit === "F" ? "C" : "F");
   }
 
-  function handleAddItemSubmit(inputValues) {
-    console.log(inputValues);
+  function handleAddItemSubmit(inputValues, resetForm) {
+    const newItem = {
+      ...inputValues,
+      _id: Date.now(),
+    };
+    setClothingItems([newItem, ...clothingItems]);
+    resetForm();
+    handleCloseModal();
   }
 
   function handleCloseModal() {
@@ -46,10 +52,6 @@ function App() {
         setWeatherData(data);
       })
       .catch(console.error);
-  }, []);
-
-  useEffect(() => {
-    setClothingItems(defaultClothingItems);
   }, []);
 
   return (
@@ -90,9 +92,14 @@ function App() {
           isOpen={activeModal === "item-modal"}
           onClose={handleCloseModal}
         />
-        <AddItemModal activeModal={activeModal} onClose={handleCloseModal} />
+        <AddItemModal
+          activeModal={activeModal}
+          onAddItem={handleAddItemSubmit}
+          onClose={handleCloseModal}
+        />
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );
 }
+
 export default App;

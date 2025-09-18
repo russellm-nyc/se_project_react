@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 
 export function useForm(defaultValues) {
@@ -9,9 +8,9 @@ export function useForm(defaultValues) {
     setValues({ ...values, [name]: value });
   };
 
-  //   const handleSubmit = (event) => {
-  //     event.preventDefault();
-  //     console.log(values);
-  //   };
-  return { values, handleChange, setValues };
+  const resetForm = () => {
+    setValues(defaultValues);
+  };
+
+  return { values, handleChange, setValues, resetForm };
 }

@@ -4,7 +4,7 @@ function ModalWithForm({
   isOpen,
   onClose,
   children,
-  handleSumit,
+  handleSubmit,
   title,
   buttonText,
   name,
@@ -20,12 +20,13 @@ function ModalWithForm({
         >
           X
         </button>
-        <form onSubmit={handleSumit} name={name} className="modal__form">
+        <form onSubmit={handleSubmit} name={name} className="modal__form">
           {children}
+
+          <button type="submit" className="modal__submit-btn">
+            {buttonText}
+          </button>
         </form>
-        <button type="submit" className="modal__submit-btn">
-          {buttonText}
-        </button>
       </div>
     </div>
   );
