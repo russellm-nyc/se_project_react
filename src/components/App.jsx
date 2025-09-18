@@ -9,11 +9,11 @@ import Footer from "../components/Footer";
 import ItemModal from "../components/ItemModal";
 import AddItemModal from "../components/AddItemModal";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
-import { defaultClothingItems } from "../utils/defaultClothingItems";
+import { getItems, addItem, deleteItem } from "../utils/api";
 import { getWeatherData } from "../utils/weatherApi";
 
 function App() {
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [weatherData, setWeatherData] = useState({ name: "", temp: 0 });
@@ -33,13 +33,22 @@ function App() {
   }
 
   function handleAddItemSubmit(inputValues, resetForm) {
-    const newItem = {
-      ...inputValues,
-      _id: Date.now(),
-    };
-    setClothingItems([newItem, ...clothingItems]);
-    resetForm();
-    handleCloseModal();
+    addItem(inputValues)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+        resetForm();
+        handleCloseModal();
+      })
+      .catch(console.error);
+  }
+
+  function handleDeleteItem(item) {
+    deleteItem(item._id)
+      .then(() => {
+        setClothingItems((items) => items.filter((i) => i._id !== item._id));
+        handleCloseModal();
+      })
+      .catch(console.error);
   }
 
   function handleCloseModal() {
@@ -50,6 +59,15 @@ function App() {
     getWeatherData()
       .then((data) => {
         setWeatherData(data);
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((items) => {
+        const sortedItems = items.sort((a, b) => b._id - a._id);
+        setClothingItems(sortedItems);
       })
       .catch(console.error);
   }, []);
@@ -91,6 +109,7 @@ function App() {
           card={selectedCard}
           isOpen={activeModal === "item-modal"}
           onClose={handleCloseModal}
+          onDeleteItem={handleDeleteItem}
         />
         <AddItemModal
           activeModal={activeModal}

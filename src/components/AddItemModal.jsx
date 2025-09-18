@@ -5,7 +5,7 @@ function AddItemModal({ activeModal, onAddItem, onClose }) {
   const { values, handleChange, resetForm } = useForm({
     name: "",
     weather: "hot",
-    link: "",
+    imageUrl: "",
   });
 
   const handleSubmit = (event) => {
@@ -38,16 +38,16 @@ function AddItemModal({ activeModal, onAddItem, onClose }) {
           maxLength="40"
           required
         />
-        <label htmlFor="garment-link-input" className="modal__label">
-          Image
+        <label htmlFor="garment-imageUrl-input" className="modal__label">
+          ImageUrl
         </label>
         <input
-          id="garment-link-input"
+          id="garment-imageUrl-input"
           type="url"
           className="modal__input"
-          name="link"
+          name="imageUrl"
           placeholder="Image URL"
-          value={values.link}
+          value={values.imageUrl}
           onChange={handleChange}
           required
         />
