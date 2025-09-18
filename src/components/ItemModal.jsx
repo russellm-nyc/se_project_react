@@ -1,9 +1,14 @@
+import { useRef } from "react";
+import useModalClose from "../hooks/useModalClose";
 import "../blocks/ItemModal.css";
 
 function ItemModal({ card, isOpen, onClose, onDeleteItem }) {
+  const modalRef = useRef();
+
+  useModalClose(isOpen, onClose, modalRef);
   return (
     <div className={`modal${isOpen ? " modal_is-opened" : ""}`}>
-      <div className="modal__container">
+      <div className="modal__container" ref={modalRef}>
         <button
           type="button"
           className="modal__close"

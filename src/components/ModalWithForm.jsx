@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import useModalClose from "../hooks/useModalClose";
 import "../blocks/ItemModal.css";
 
 function ModalWithForm({
@@ -9,9 +11,14 @@ function ModalWithForm({
   buttonText,
   name,
 }) {
+  const modalRef = useRef();
+  useModalClose(isOpen, onClose, modalRef);
   return (
     <div className={`modal${isOpen ? " modal_is-opened" : ""}`}>
-      <div className="modal__container modal__container_type_form">
+      <div
+        className="modal__container modal__container_type_form"
+        ref={modalRef}
+      >
         <h2 className="modal__title">{title}</h2>
         <button
           type="button"
