@@ -103,10 +103,10 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
-      "name": "tee",
-      "imageUrl": "https://cdn.dribbble.com/userupload/6997572/file/original-bd89b9ad2d96a2b2144481b63bb56b94.png?format=webp&resize=400x300&vertical=center",
+      "name": "Sneaker",
+      "imageUrl": "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/6e7885e14f144b998c75368fcd5ececf_9366/Grand_Court_2.0_Shoes_White_GW9195_HM1.jpg",
       "weather": "hot",
-      "_id": 19
+      "_id": 17
     }
   ]
 }
